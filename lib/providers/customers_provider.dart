@@ -51,29 +51,4 @@ class CustomersProvider extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
-
-  // Update
-  Future<void> updateCustomerInAPI(CustomersElement updatedCustomer) async {
-    try {
-      final response = await http.put(
-        Uri.parse("$apiEndpoint/${updatedCustomer.id}"),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: jsonEncode(updatedCustomer.toJson()),
-      );
-
-      if (response.statusCode == 200) {
-        final index = customers.data.indexWhere(
-          (customer) => customer.id == updatedCustomer.id,
-        );
-        customers.data[index] = updatedCustomer;
-        notifyListeners();
-      } else {
-        error = response.statusCode.toString();
-      }
-    } catch (e) {
-      error = e.toString();
-    }
-  }
 }

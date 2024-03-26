@@ -841,10 +841,9 @@ class CustomerScreen extends StatelessWidget {
       );
 
       customersProvider.postCustomerToAPI(newCustomer);
-      print("Success");
       Navigator.pop(context);
     } else {
-      print("Denied");
+      
     }
   }
 }
